@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi super estrella ❤️</title>
+    <style>
+        body {
+            margin: 0; padding: 0;
+            background: linear-gradient(to bottom, #001a33 0%, #0059b3 50%, #80d4ff 100%);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; overflow-x: hidden; color: white;
+        }
+
+        /* Título Galáctico con Brillo Animado */
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-align: center;
+            margin: 30px 0;
+            text-shadow: 0 0 10px #fff, 0 0 20px #ff4d6d, 0 0 30px #ff4d6d;
+            animation: shine 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes shine {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #ff4d6d; transform: scale(1); }
+            to { text-shadow: 0 0 20px #fff, 0 0 40px #ff4d6d, 0 0 60px #ff4d6d; transform: scale(1.03); }
+        }
+
+        .container {
+            position: relative; z-index: 10;
+            width: 90%; max-width: 850px; text-align: center;
+            background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(15px);
+            padding: 25px; border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .music-btn {
+            background: #ff4d6d; color: white; border: none;
+            padding: 15px 50px; border-radius: 50px; cursor: pointer;
+            font-weight: bold; margin-bottom: 25px; font-size: 1.4rem;
+            box-shadow: 0 0 25px rgba(255,77,109,0.7);
+            transition: all 0.3s ease; text-transform: uppercase;
+        }
+        .music-btn:hover { background: #c9184a; transform: scale(1.1); }
+
+        iframe.pdf-view {
+            width: 100%; height: 600px; border: none; border-radius: 15px; background: white;
+        }
+
+        /* Emoji Final que Rebota */
+        .final-emoji { font-size: 70px; margin-top: 30px; animation: bounce 1.5s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-25px); } }
+
+        /* Estrellas Fugaces (Lluvia de 30) */
+        .night { position: fixed; width: 100%; height: 100%; transform: rotateZ(45deg); z-index: 1; }
+        .shooting_star {
+            position: absolute; height: 2px;
+            background: linear-gradient(-45deg, #ffffff, rgba(0, 0, 255, 0));
+            border-radius: 999px; filter: drop-shadow(0 0 6px #ffffff);
+            animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+            opacity: 0;
+        }
+        @keyframes tail { 0% { width: 0; } 30% { width: 100px; } 100% { width: 0; } }
+        @keyframes shooting { 
+            0% { transform: translateX(0); opacity: 1; } 
+            100% { transform: translateX(600px); opacity: 0; } 
+        }
+
+        /* Generar posiciones */
+        .shooting_star:nth-child(1) { top: 10%; left: 10%; animation-delay: 0.1s; }
+        .shooting_star:nth-child(2) { top: 30%; left: 50%; animation-delay: 1.5s; }
+        .shooting_star:nth-child(3) { top: 50%; left: 20%; animation-delay: 0.8s; }
+        .shooting_star:nth-child(4) { top: 70%; left: 80%; animation-delay: 2.2s; }
+        .shooting_star:nth-child(5) { top: 15%; left: 40%; animation-delay: 3.5s; }
+    </style>
+</head>
+<body>
+
+    <div class="night">
+        <div class="shooting_star"></div><div class="shooting_star"></div>
+        <div class="shooting_star"></div><div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+    </div>
+
+    <h1>Para mi super estrella ❤️</h1>
+
+    <div class="container">
+        <button class="music-btn" id="playBtn" onclick="actionMusic()">Escuchar</button>
+
+        <audio id="mainAudio" src="one.mp3" loop></audio>
+
+        <iframe class="pdf-view" src="https://drive.google.com/file/d/1z1qhb6B7nQfH0jWScJw3GYPD1ADNJoze/preview"></iframe>
+
+        <div class="final-emoji">❤️</div>
+    </div>
+
+    <script>
+        function actionMusic() {
+            var audio = document.getElementById("mainAudio");
+            var btn = document.getElementById("playBtn");
+            
+            if (audio.paused) {
+                audio.play().then(() => {
+                    btn.innerText = "🎶 Sonando...";
+                    btn.style.background = "#c9184a";
+                }).catch(err => {
+                    console.log("Error:", err);
+                    alert("Asegúrate de que el archivo 'one.mp3' esté en la misma carpeta que este HTML.");
+                });
+            } else {
+                audio.pause();
+                btn.innerText = "Escuchar";
+                btn.style.background = "#ff4d6d";
+            }
+        }
+    </script>
+</body>
+</html>
